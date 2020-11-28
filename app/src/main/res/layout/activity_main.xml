@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+    tools:context=".MainActivity">
+
+   <TextView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+      android:layout_alignParentTop="true"
+      android:layout_centerHorizontal="true"
+      android:text="단어 목록"
+       android:layout_marginBottom="20dp"
+       android:id="@+id/text1"/>
+
+   <AutoCompleteTextView
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+      android:layout_toLeftOf="@+id/search"
+       android:layout_alignBaseline="@+id/search"
+       android:hint="검색할 단어를 입력하세요"
+       android:completionThreshold="1"
+      android:id="@+id/auto"/>
+
+   <Button
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:text="검색"
+       android:id="@+id/search"
+       android:layout_below="@+id/text1"
+       android:layout_alignParentRight="true"/>
+   <ListView
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+      android:layout_below="@+id/auto"
+      android:layout_above="@+id/back1"
+       android:id="@+id/listview"/>
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+       android:id="@+id/back1"
+      android:orientation="horizontal">
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+         android:layout_weight="1"
+         android:text="목록"
+         android:id="@+id/list"/>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="추가"
+          android:id="@+id/add"/>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:text="설정"
+          android:id="@+id/option"/>
+   </LinearLayout>
+</RelativeLayout>
