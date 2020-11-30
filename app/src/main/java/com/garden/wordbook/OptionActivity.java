@@ -1,4 +1,4 @@
-package com.example.wordbook;
+package com.garden.wordbook;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
@@ -17,10 +18,11 @@ public class OptionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
 
-        Button list, add, reset;
+        LinearLayout list, add;
+        Button reset;
 
-        list = (Button) findViewById(R.id.list);
-        add = (Button) findViewById(R.id.add);
+        list = (LinearLayout) findViewById(R.id.list);
+        add = (LinearLayout) findViewById(R.id.add);
         reset = (Button) findViewById(R.id.reset);
 
         myHelper = new myDBHelper(this);

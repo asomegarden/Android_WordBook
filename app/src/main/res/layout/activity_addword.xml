@@ -3,6 +3,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryDark"
     android:padding="10dp">
     <TextView
         android:layout_width="wrap_content"
@@ -13,24 +14,48 @@
         android:layout_marginBottom="20dp"
         android:text="단어 추가"/>
 
-    <EditText
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/text1"
-        android:text=""
-        android:id="@+id/word"
-        android:hint="단어" />
+        android:id="@+id/back0"
+        android:layout_below="@id/text1"
+        android:background="@drawable/raund_darkgray"
+        android:orientation="horizontal">
+
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:text=""
+            android:id="@+id/word"
+            android:background="#00ffffff"
+            android:padding="10dp"
+            android:hint="단어" />
+        <Button
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="10dp"
+            android:background="@drawable/icon_internet"
+            android:id="@+id/btnSearch"/>
+    </LinearLayout>
+
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/mean"
-        android:layout_below="@+id/word"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:layout_below="@+id/back0"
+        android:background="@drawable/raund_darkgray"
         android:hint="의미" />
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/mean"
+        android:layout_marginTop="10dp"
         android:text="추가"
+        android:background="@drawable/raund_lightgray"
         android:id="@+id/btnAdd"/>
 
     <LinearLayout
@@ -38,24 +63,45 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:id="@+id/back1"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
         android:orientation="horizontal">
-        <Button
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="목록"
-            android:id="@+id/list"/>
-        <Button
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/list">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/icon_menu" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="추가"
-            android:id="@+id/add"/>
-        <Button
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/add">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/icon_plus" />
+        </LinearLayout>
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="설정"
-            android:id="@+id/option"/>
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/option">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/icon_gear" />
+        </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

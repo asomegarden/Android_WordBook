@@ -1,7 +1,6 @@
-package com.example.wordbook;
+package com.garden.wordbook;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,11 +12,10 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 public class MainActivity extends BaseActivity {
 
@@ -28,11 +26,12 @@ public class MainActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Button add, option, search;
+        Button search;
+        LinearLayout add, option;
         final AutoCompleteTextView auto = (AutoCompleteTextView) findViewById(R.id.auto);
 
-        add = (Button) findViewById(R.id.add);
-        option = (Button) findViewById(R.id.option);
+        add = (LinearLayout) findViewById(R.id.add);
+        option = (LinearLayout) findViewById(R.id.option);
         search = (Button) findViewById(R.id.search);
 
         final ArrayList<String> items = new ArrayList<String>();
@@ -41,7 +40,7 @@ public class MainActivity extends BaseActivity {
         listview.setAdapter(adapter);
 
         final ArrayList<String> searchItems = new ArrayList<String>();
-        final ArrayAdapter adapter_search = new ArrayAdapter(this, android.R.layout.simple_dropdown_item_1line, searchItems);
+        final ArrayAdapter adapter_search = new ArrayAdapter(this, R.layout.custom_dropdown_item, searchItems);
         auto.setAdapter(adapter_search);
 
         LoadList(items, adapter, auto);
@@ -60,6 +59,11 @@ public class MainActivity extends BaseActivity {
                 if(toggle) toggle = false;
                 else toggle = true;
                 LoadList(items, adapter, auto);
+                if(items.get(position).equals("단어를 추가해보세요"))
+                {
+                    Intent intent = new Intent(getApplicationContext(), AddWordActivity.class);
+                    startActivity(intent);
+                }
             }
         };
 

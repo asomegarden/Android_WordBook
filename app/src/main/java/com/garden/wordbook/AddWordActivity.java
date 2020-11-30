@@ -1,17 +1,13 @@
-package com.example.wordbook;
+package com.garden.wordbook;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
+import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import java.util.ArrayList;
 
 public class AddWordActivity extends BaseActivity {
     @Override
@@ -19,16 +15,32 @@ public class AddWordActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addword);
 
-        Button list, option, btnAdd;
+        Button btnAdd, btnSearch;
+        LinearLayout list, option;
         final EditText word, mean;
 
-        list = (Button) findViewById(R.id.list);
-        option = (Button) findViewById(R.id.option);
+        list = (LinearLayout) findViewById(R.id.list);
+        option = (LinearLayout) findViewById(R.id.option);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         word = (EditText) findViewById(R.id.word);
         mean = (EditText) findViewById(R.id.mean);
+        btnSearch = (Button) findViewById(R.id.btnSearch);
 
         myHelper = new myDBHelper(this);
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(word.getText().toString().equals("")) {
+                    Toast.makeText(getApplicationContext(), "먼저 내용을 입력하세요", Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    Intent intent = new Intent(Intent.ACTION_WEB_SEARCH);
+                    intent.putExtra(SearchManager.QUERY, word.getText().toString() + " 뜻");
+                    startActivity(intent);
+                }
+            }
+        });
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             String textword, textmean;
