@@ -80,7 +80,19 @@
          <ImageView
              android:layout_width="25dp"
              android:layout_height="25dp"
-             android:background="@drawable/icon_plus" />
+             android:background="@drawable/icon_plus_dark" />
+      </LinearLayout>
+      <LinearLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_weight="1"
+          android:orientation="horizontal"
+          android:gravity="center"
+          android:id="@+id/learn">
+         <ImageView
+             android:layout_width="25dp"
+             android:layout_height="25dp"
+             android:background="@drawable/icon_learn_dark" />
       </LinearLayout>
       <LinearLayout
           android:layout_width="wrap_content"
@@ -92,7 +104,7 @@
          <ImageView
              android:layout_width="25dp"
              android:layout_height="25dp"
-             android:background="@drawable/icon_gear" />
+             android:background="@drawable/icon_gear_dark" />
       </LinearLayout>
 
    </LinearLayout>

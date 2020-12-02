@@ -16,11 +16,12 @@ public class AddWordActivity extends BaseActivity {
         setContentView(R.layout.activity_addword);
 
         Button btnAdd, btnSearch;
-        LinearLayout list, option;
+        LinearLayout list, option, learn;
         final EditText word, mean;
 
         list = (LinearLayout) findViewById(R.id.list);
         option = (LinearLayout) findViewById(R.id.option);
+        learn = (LinearLayout) findViewById(R.id.learn);
         btnAdd = (Button) findViewById(R.id.btnAdd);
         word = (EditText) findViewById(R.id.word);
         mean = (EditText) findViewById(R.id.mean);
@@ -48,13 +49,14 @@ public class AddWordActivity extends BaseActivity {
             public void onClick(View v) {
                 textword = word.getText().toString();
                 textmean = mean.getText().toString();
+                String level = "lack";
 
                 if(textword.equals("") || textmean.equals("")) {
                     Toast.makeText(getApplicationContext(), "단어와 의미를 모두 입력하세요", Toast.LENGTH_SHORT).show();
                 }
                 else{
                     sqlDB = myHelper.getWritableDatabase();
-                    sqlDB.execSQL("INSERT OR REPLACE INTO wordTBL VALUES('" + textword + "', '" + textmean + "');");
+                    sqlDB.execSQL("INSERT OR REPLACE INTO wordTBL VALUES('" + textword + "', '" + textmean + "', '" + level + "');");
                     sqlDB.close();
                     word.setText("");
                     mean.setText("");
@@ -73,6 +75,13 @@ public class AddWordActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), OptionActivity.class);
+                startActivity(intent);
+            }
+        });
+        learn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LearnWordActivity.class);
                 startActivity(intent);
             }
         });

@@ -3,6 +3,7 @@ package com.garden.wordbook;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Bundle;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -33,12 +34,17 @@ public class BaseActivity extends AppCompatActivity {
         }
         @Override
         public void onCreate(SQLiteDatabase db) {
-            db.execSQL("CREATE TABLE wordTBL (gWord String PRIMARY KEY, gMean String);");
+            db.execSQL("CREATE TABLE wordTBL (gWord String PRIMARY KEY, gMean String, gLevel String);");
         }
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
             db.execSQL("DROP TABLE IF EXISTS wordTBL");
             onCreate(db);
         }
+    }
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        overridePendingTransition(R.anim.horizon_enter, R.anim.none);
     }
 }

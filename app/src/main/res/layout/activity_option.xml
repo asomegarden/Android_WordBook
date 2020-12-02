@@ -19,6 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/text1"
         android:background="@drawable/raund_lightgray"
+        android:stateListAnimator="@null"
         android:id="@+id/reset"
         android:text="단어장 초기화"/>
 
@@ -40,7 +41,7 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/icon_menu" />
+                android:background="@drawable/icon_menu_dark" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"
@@ -52,7 +53,19 @@
             <ImageView
                 android:layout_width="25dp"
                 android:layout_height="25dp"
-                android:background="@drawable/icon_plus" />
+                android:background="@drawable/icon_plus_dark" />
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/learn">
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:background="@drawable/icon_learn_dark" />
         </LinearLayout>
         <LinearLayout
             android:layout_width="wrap_content"

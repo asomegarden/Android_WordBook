@@ -27,11 +27,12 @@ public class MainActivity extends BaseActivity {
         setContentView(R.layout.activity_main);
 
         Button search;
-        LinearLayout add, option;
+        LinearLayout add, option, learn;
         final AutoCompleteTextView auto = (AutoCompleteTextView) findViewById(R.id.auto);
 
         add = (LinearLayout) findViewById(R.id.add);
         option = (LinearLayout) findViewById(R.id.option);
+        learn = (LinearLayout) findViewById(R.id.learn);
         search = (Button) findViewById(R.id.search);
 
         final ArrayList<String> items = new ArrayList<String>();
@@ -125,16 +126,25 @@ public class MainActivity extends BaseActivity {
                 startActivity(intent);
             }
         });
+        learn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LearnWordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     public void LoadList(final ArrayList<String> items, final ArrayAdapter adapter, final AutoCompleteTextView auto){
         String str = auto.getText().toString();
         String sqlSelect;
         adapter.clear();
+        Boolean check = false;
         if(str.equals("")){
             sqlSelect = "SELECT * FROM wordTBL";
         }
         else{
             sqlSelect = "SELECT * FROM wordTBL WHERE gWord=" + "'" + auto.getText().toString() + "'";
+            check = true;
         }
         myHelper = new myDBHelper(this);
         if(toggle) {
@@ -146,7 +156,18 @@ public class MainActivity extends BaseActivity {
                 items.add(cursor.getString(0));
                 index++;
             }
-            if (index == 0) items.add("단어를 추가해보세요");
+            if (index == 0) {
+                if(check){
+                    sqlSelect = "SELECT * FROM wordTBL WHERE gMean=" + "'" + auto.getText().toString() + "'";
+                    cursor = sqlDB.rawQuery(sqlSelect, null);
+                    while (cursor.moveToNext()) {
+                        items.add(cursor.getString(0));
+                        index++;
+                    }
+                    if(index == 0) items.add("단어를 추가해보세요");
+                }
+                else items.add("단어를 추가해보세요");
+            }
         }
         else{
             int index = 0;
@@ -157,7 +178,18 @@ public class MainActivity extends BaseActivity {
                 items.add(cursor.getString(1));
                 index++;
             }
-            if (index == 0) items.add("단어를 추가해보세요");
+            if (index == 0) {
+                if(check){
+                    sqlSelect = "SELECT * FROM wordTBL WHERE gMean=" + "'" + auto.getText().toString() + "'";
+                    cursor = sqlDB.rawQuery(sqlSelect, null);
+                    while (cursor.moveToNext()) {
+                        items.add(cursor.getString(1));
+                        index++;
+                    }
+                    if(index == 0) items.add("단어를 추가해보세요");
+                }
+                else items.add("단어를 추가해보세요");
+            }
         }
         adapter.notifyDataSetChanged();
         sqlDB.close();

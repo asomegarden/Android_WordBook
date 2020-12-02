@@ -18,11 +18,12 @@ public class OptionActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_option);
 
-        LinearLayout list, add;
+        LinearLayout list, add, learn;
         Button reset;
 
         list = (LinearLayout) findViewById(R.id.list);
         add = (LinearLayout) findViewById(R.id.add);
+        learn = (LinearLayout) findViewById(R.id.learn);
         reset = (Button) findViewById(R.id.reset);
 
         myHelper = new myDBHelper(this);
@@ -74,6 +75,13 @@ public class OptionActivity extends BaseActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), AddWordActivity.class);
+                startActivity(intent);
+            }
+        });
+        learn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LearnWordActivity.class);
                 startActivity(intent);
             }
         });
