@@ -12,7 +12,6 @@ import android.widget.Toast;
 import androidx.appcompat.app.AlertDialog;
 
 public class OptionActivity extends BaseActivity {
-    public static final String TAG = "Alert_Dialog";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,8 +38,6 @@ public class OptionActivity extends BaseActivity {
                 ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.v(TAG, "Yes Btn Click");
-                        dialog.dismiss();     //닫기
                         sqlDB = myHelper.getReadableDatabase();
 
                         sqlDB.execSQL("delete from wordTBL");
@@ -51,15 +48,7 @@ public class OptionActivity extends BaseActivity {
                 });
 
                 // 취소 버튼 설정
-                ad.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.v(TAG, "No Btn Click");
-                        dialog.dismiss();     //닫기
-                        // Event
-                    }
-                });
-                // 창 띄우기
+                ad.setNegativeButton("No", null);
                 ad.show();
             }
         });

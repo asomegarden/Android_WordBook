@@ -19,7 +19,6 @@ import java.util.ArrayList;
 
 public class MainActivity extends BaseActivity {
 
-    public static final String TAG = "Alert_Dialog";
     Boolean toggle = true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,8 +80,6 @@ public class MainActivity extends BaseActivity {
                 ad.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Log.v(TAG, "Yes Btn Click");
-                        dialog.dismiss();     //닫기
                         str = items.get(position);
                         sqlDB = myHelper.getWritableDatabase();
                         String deleteQuery = "DELETE FROM wordTBL WHERE gWord='" + str + "'";
@@ -97,13 +94,7 @@ public class MainActivity extends BaseActivity {
                 });
 
                 // 취소 버튼 설정
-                ad.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        Log.v(TAG, "No Btn Click");
-                        dialog.dismiss();     //닫기
-                    }
-                });
+                ad.setNegativeButton("No", null);
                 ad.show();
                 return false;
             }
